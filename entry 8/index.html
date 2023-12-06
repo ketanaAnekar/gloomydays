@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/yit8fla.css">
+    <title>gloomy days</title>
+</head>
+<body>
+    <div class="header">
+        <a href="#" class="back"> BACK</a>
+        <a href="#" class="next"> NEXT</a>
+    </div>
+    <div class="main">
+        <h1 id="gloomy">gloomy</h1>
+        <h1 id="days">days</h1>
+    </div>
+    <div class="sentence">
+        <h3> listening to sad songs when you're sad is never a good idea.. but I'm guilty of it so...
+        </h3>
+    </div>
+    <div class="buttons">
+        <button onclick="playSong('Everybody Hurts.mp3')">Everybody Hurts: R.E.M</button>
+        <button onclick="playSong('Hide and Seek.mp3')">Hide and Seek: Imogen Heap</button>
+        <button onclick="playSong('Love In The Dark.mp3')">Love In The Dark: Adele</button>
+    </div>
+
+    <script>
+        // script.js
+
+        // Variable to store the current audio element
+        var currentAudioElement = null;
+
+        // Function to play a song
+        function playSong(songPath) {
+            // Get the audio element
+            var audioElement = new Audio(songPath);
+
+            // Check if the same audio is already playing
+            if (currentAudioElement === audioElement && !audioElement.paused) {
+                audioElement.pause();
+            } else {
+                // Stop the previous audio if any
+                if (currentAudioElement) {
+                    currentAudioElement.pause();
+                }
+
+                // Set the new audio source and play
+                audioElement.play();
+                currentAudioElement = audioElement;
+            }
+        }
+
+        // Add an event listener to each button to handle double-click
+        document.querySelectorAll('.buttons button').forEach(function(button) {
+            var clicks = 0;
+            button.addEventListener('click', function() {
+                clicks++;
+                if (clicks === 2) {
+                    currentAudioElement.pause();
+                    clicks = 0;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
